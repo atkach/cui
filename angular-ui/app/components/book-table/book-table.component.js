@@ -1,5 +1,5 @@
 angular.
-  module('BookShelf').
+  module('bookShelf').
   component('bookTable', {
     template: 'Hello, {{$ctrl.user}}!',
     controller: ['$http',

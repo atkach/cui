@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var route = require('./app/routes/route');
 
-var UI = 'angular';
+var UI = 'angular-ui/dist';
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -16,8 +16,8 @@ var port = process.env.PORT || 8080;
 /**
  * connect to mongo DB
  */
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/cui');
+//mongoose.Promise = global.Promise;
+//mongoose.connect('mongodb://localhost:27017/cui');
 
 /**
  * Connect routes
