@@ -4,7 +4,7 @@ var App = angular.module('bookShelf', [
   function config($locationProvider, $routeProvider) {
     $locationProvider.hashPrefix('');
 
-    $routeProvider.when('/', {
+    $routeProvider.when('/login', {
       templateUrl: 'pages/login/login.template.html',
       controller: 'loginController'
     }).when('/books', {
@@ -22,7 +22,11 @@ var App = angular.module('bookShelf', [
   }
 ]);
 
-App.controller('AppController', function ($scope, $http) {
+App.controller('AppController', function ($scope, $http, $location) {
   $scope.message = 'Hello World!';
+
+  //if (true) {
+  //  $location.path('/login');
+  //}
 
 });
