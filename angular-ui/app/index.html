@@ -1,0 +1,27 @@
+<!doctype html>
+<html ng-app="bookShelf">
+<head>
+    <meta charset="utf-8">
+    <title>My HTML File</title>
+    <link rel="stylesheet" href="app.css" />
+    <script src="vendor.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <div ng-controller="AppController" id="app">
+        <div class="top-panel">
+            <ul>
+                <li>
+                    <a>Books</a>
+                    <a>About</a>
+                </li>
+            </ul>
+            <div>
+                <span>Admin, </span>
+                <a>Log out</a>
+            </div>
+        </div>
+        <div ng-view></div>
+    </div>
+</body>
+</html>

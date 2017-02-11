@@ -5,9 +5,11 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var route = require('./app/routes/route');
 
+var UI = 'angular';
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "./../frontend")));
+app.use(express.static(path.join(__dirname, "./../" + UI)));
 
 var port = process.env.PORT || 8080;
 
