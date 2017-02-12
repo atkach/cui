@@ -1,20 +1,16 @@
 
-
-App.controller("loginController", function ($scope, $location, $http, $q) {
+App.controller("loginController",
+  ['$scope', '$location', 'AuthService', function ($scope, $location, AuthService) {
 
   $scope.submitLogin = function() {
-    serverLogin($scope.userName, $scope.password).then(function(userName) {
+    $scope.loginInProgress = true;
+    AuthService.login($scope.userName, $scope.password).then(function(response) {
+      AuthService.setCredentials(response.username, response.password);
       $location.path('/books');
+      $scope.loginInProgress = false;
     }, function(err) {
+      $scope.loginInProgress = false;
       $scope.loginError = 'Failed to login:'+ err;
     });
   };
-
-  function serverLogin(userName, password) {
-    var deferred = $q.defer();
-    deferred.resolve(userName);
-
-    return deferred.promise;
-  }
-
-});
+}]);

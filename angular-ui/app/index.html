@@ -9,8 +9,8 @@
 </head>
 <body>
     <div ng-controller="AppController" id="app">
-        <header-menu></header-menu>
-        <div ng-view></div>
+        <header-menu ng-show="globals.currentUser.username"></header-menu>
+        <div ng-view class="content"></div>
     </div>
 </body>
 </html>
