@@ -1,3 +1,6 @@
 <div id="booksPage">
     <h1>Books Page</h1>
+    <div ng-repeat="book in books | orderBy: 'name'">
+        <h4>{{book.name}}</h4>
+    </div>
 </div>

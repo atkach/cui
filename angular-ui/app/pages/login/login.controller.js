@@ -4,13 +4,13 @@ App.controller("loginController",
 
   $scope.submitLogin = function() {
     $scope.loginInProgress = true;
-    AuthService.login($scope.userName, $scope.password).then(function(response) {
-      AuthService.setCredentials(response.username, response.password);
+    AuthService.login($scope.username, $scope.password).then(function() {
+      AuthService.setCredentials($scope.username, $scope.password);
       $location.path('/books');
       $scope.loginInProgress = false;
     }, function(err) {
       $scope.loginInProgress = false;
-      $scope.loginError = 'Failed to login:'+ err;
+      $scope.loginError = 'Failed to login:'+ err.data;
     });
   };
 }]);

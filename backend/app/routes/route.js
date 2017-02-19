@@ -1,4 +1,5 @@
 var express = require('express');
+var basicAuth = require('basic-auth');
 var router = express.Router();
 
 
@@ -12,8 +13,30 @@ router.use(function(req, res, next) {
   next();
 });
 
-router.get('/', function(req, res) {
+router.post('/login', function(req, res, next) {
+  if (req.body.username !== 'admin' || req.body.password !== 'admin') {
+    res.statusCode = 403;
+    res.end('Incorrect credentials');
+  } else {
+    res.end('Login successful');
+    next();
+  }
+});
+
+router.all('*', function(req, res, next) {
+  var user = basicAuth(req);
+  if (!user || user.name !== 'admin' || user.pass !== 'admin') {
+    //res.setHeader('WWW-Authenticate', 'Basic');
+    res.statusCode = 401;
+    res.end('Access denied');
+  } else {
+    next();
+  }
+});
+
+router.get('/', function(req, res, next) {
   res.json({ message: 'hooray! welcome to our api!' });
+  next();
 });
 
 

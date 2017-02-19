@@ -11,19 +11,7 @@ function AuthService($http, $cookies, $rootScope, $q, $timeout) {
   return service;
 
   function login(username, password) {
-    var deferred = $q.defer();
-    $timeout(function() {
-      deferred.resolve({
-        username: username,
-        password: password,
-        permissions: ['ALL']
-      });
-    }, 2000);
-
-    return deferred.promise;
-
-    //return $http.post('/api/authenticate',
-    // { username: username, password: password });
+    return $http.post('/api/v1/login', { username: username, password: password });
   }
 
   function setCredentials(username, password) {

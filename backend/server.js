@@ -16,8 +16,9 @@ var port = process.env.PORT || 8080;
 /**
  * connect to mongo DB
  */
-//mongoose.Promise = global.Promise;
-//mongoose.connect('mongodb://localhost:27017/cui');
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/cui');
+
 
 /**
  * Connect routes

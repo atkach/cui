@@ -1,8 +1,10 @@
 var App = angular.module('bookShelf', [
   'ngRoute',
   'ngCookies'
-]).constant('ENVIRONMENT', 'development')
-  .value('val1', {})
+]).constant('CONFIGS', {
+    apiPrefix: 'api/v1/'
+  })
+  .value('CONFIGS', {})
   .run(run);
 
 /**
