@@ -1,0 +1,39 @@
+<h1>Add New Book</h1>
+<div>
+    <form role="form" name="addBookForm" novalidate ng-submit="create()" ng-controller="addBookController">
+        <div class="form-group">
+            <div class="inline">
+                <span>Title:</span>
+                <input class="text-field" name="name" ng-model="name" required/>
+                <span class="error" ng-show="addBookForm.name.$touched && addBookForm.name.$invalid">
+                    Please enter title.
+                </span>
+            </div>
+            <div class="inline">
+                <span>Author</span>
+                <input class="text-field" name="author" ng-model="author" required/>
+                <span class="error" ng-show="addBookForm.author.$touched && addBookForm.author.$invalid">
+                    Please enter author.
+                </span>
+            </div>
+            <div class="inline">
+                <span>Year</span>
+                <input type="number" class="text-field" name="year" ng-model="year" required/>
+                <span class="error" ng-show="addBookForm.year.$touched && addBookForm.year.$invalid">
+                    Please enter year.
+                </span>
+            </div>
+            <div class="inline">
+                <span>Read</span>
+                <input type="checkbox" name="read" ng-model="read"/>
+            </div>
+            <div class="inline">
+                <a class="btn" href="/#/books">Cancel</a>
+                <input type="submit" ng-disabled="!addBookForm.$valid" class="btn" value="Create"/>
+            </div>
+            <div>
+                <span class="{{requestSuccess ? 'success' : 'error'}}">{{requestMessage}}</span>
+            </div>
+        </div>
+    </form>
+</div>

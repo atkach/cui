@@ -11,6 +11,9 @@ App.config(['$locationProvider', '$routeProvider',
     }).when('/books/:bookId', {
       templateUrl: 'pages/book/book.template.html',
       controller: 'bookController'
+    }).when('/add-book', {
+      templateUrl: 'pages/add-book/add-book.template.html',
+      controller: 'addBookController'
     }).when('/about', {
       templateUrl: 'pages/about/about.template.html',
       controller: 'aboutController'

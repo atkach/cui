@@ -1,6 +1,34 @@
-<div id="booksPage">
-    <h1>Books Page</h1>
-    <div ng-repeat="book in books | orderBy: 'name'">
-        <h4>{{book.name}}</h4>
+<div id="books-page">
+    <h1 class="align-center">Books Page</h1>
+    <div>
+        <a class="float-left btn" href="/#/add-book">Add Book</a>
+        <div class="float-right form-group">
+            <span>Search</span>
+            <input type="text" class="text-field" placeholder="Enter book title"/>
+        </div>
+        <div class="clear"></div>
     </div>
+    <div class="table-wrapper">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Year</th>
+                    <th>Rating</th>
+                    <th>Read</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="book in books | orderBy: 'name'">
+                    <td><a href="/#/books/{{book._id}}" class="link">{{book.name}}</a></td>
+                    <td>{{book.author}}</td>
+                    <td class="align-center">{{book.year}}</td>
+                    <td class="align-center">{{book.rating}}</td>
+                    <td class="align-center">{{book.read}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>

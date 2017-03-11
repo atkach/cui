@@ -1,10 +1,11 @@
 var express = require('express');
 var basicAuth = require('basic-auth');
 var router = express.Router();
+var booksRoute = require('./books');
 
 
-//Models
-var Book = require('../models/book');
+const USERNAME = 'admin';
+const PASSWORD = 'admin';
 
 module.exports = router;
 
@@ -14,7 +15,7 @@ router.use(function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next) {
-  if (req.body.username !== 'admin' || req.body.password !== 'admin') {
+  if (req.body.username !== USERNAME || req.body.password !== PASSWORD) {
     res.statusCode = 403;
     res.end('Incorrect credentials');
   } else {
@@ -25,7 +26,7 @@ router.post('/login', function(req, res, next) {
 
 router.all('*', function(req, res, next) {
   var user = basicAuth(req);
-  if (!user || user.name !== 'admin' || user.pass !== 'admin') {
+  if (!user || user.name !== USERNAME || user.pass !== PASSWORD) {
     //res.setHeader('WWW-Authenticate', 'Basic');
     res.statusCode = 401;
     res.end('Access denied');
@@ -40,57 +41,4 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.route('/books')
-  .post(function(req, res) {
-    var book = new Book();
-    book.name = req.body.name;
-
-    book.save(function(err) {
-      if (err) {
-        res.send(err);
-      }
-      res.json({ message: 'book created!' });
-    });
-  })
-  .get(function(req, res) {
-    Book.find(function(err, books) {
-      if (err) {
-        res.send(err);
-      }
-      res.json(books);
-    });
-  });
-
-router.route('/books/:book_id')
-  .get(function(req, res) {
-    Book.findById(req.params.book_id, function(err, book) {
-      if (err) {
-        res.send(err);
-      }
-      res.json(book);
-    });
-  })
-  .put(function(req, res) {
-    Book.findById(req.params.book_id, function(err, book) {
-      if (err) {
-        res.send(err);
-      }
-      book.name = req.body.name;
-      book.save(function(err) {
-        if (err) {
-          res.send(err);
-        }
-        res.json({ message: 'Book updated!' });
-      });
-    });
-  })
-  .delete(function(req, res) {
-    Book.remove({
-      _id: req.params.book_id
-    }, function(err, book) {
-      if (err) {
-        res.send(err);
-      }
-      res.json({ message: 'Successfully deleted' });
-    });
-  });
+booksRoute.init(router);
