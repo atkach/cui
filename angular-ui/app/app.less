@@ -9,6 +9,18 @@ ul {
   padding: 0;
 }
 
+.icon-ok {
+  color: green;
+}
+
+.icon-minus {
+  color: grey;
+}
+
+.checkbox {
+  cursor: pointer;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -55,15 +67,20 @@ a {
   .inline {
     margin: 10px 0;
     span {
+      vertical-align: top;
       display: inline-block;
-      min-width: 50px;
+      min-width: 70px;
     }
   }
   .text-field {
-    min-width: 150px;
+    min-width: 200px;
     padding: 7px;
     border: 1px solid grey;
     border-radius: 2px;
+  }
+  .textarea {
+    min-width: 400px;
+    min-height: 100px;
   }
 }
 

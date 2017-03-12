@@ -7,12 +7,15 @@ module.exports = {
         var book = new Book();
         requestBodyToBook(req.body, book);
 
-        book.save(function(err) {
+        book.save(function(err, product) {
           if (err) {
             res.statusCode = 400;
             return res.send(err);
           }
-          res.json({ message: 'book created!' });
+          res.json({
+            book_id: product._id,
+            message: 'book created!'
+          });
         });
       })
       .get(function(req, res) {

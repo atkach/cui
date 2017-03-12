@@ -1,14 +1,11 @@
 
 App.controller("addBookController",
-  ['$scope', '$routeParams', 'BookService',
-    function ($scope, $routeParams, BookService) {
-      $scope.name = '';
-      $scope.author = '';
-      $scope.year = '';
-      $scope.read = false;
+  ['$scope', 'BookService', '$location',
+    function ($scope, BookService, $location) {
+
       $scope.requestMessage = '';
       $scope.requestSuccess = true;
-
+      reset();
 
       $scope.create = function() {
         var bookInfo = {
@@ -16,15 +13,25 @@ App.controller("addBookController",
           author: $scope.author,
           year: Number($scope.year),
           read: $scope.read,
-          rating: 0
+          rating: 0,
+          review: $scope.review
         };
         BookService.create(bookInfo, function(data, error) {
           if (data.successful) {
             $scope.requestMessage = `Book ${$scope.name} successfully created!`;
+            $location.path('/books/' + data.bookId);
           } else {
             $scope.requestMessage = error.message;
             $scope.requestSuccess = false;
           }
         });
       };
+
+      function reset() {
+        $scope.name = '';
+        $scope.author = '';
+        $scope.year = '';
+        $scope.review = '';
+        $scope.read = false;
+      }
     }]);

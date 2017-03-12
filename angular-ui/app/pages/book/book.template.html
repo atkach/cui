@@ -1,1 +1,30 @@
-<h1>Book page</h1>
+<div id="book">
+    <h1 class="align-center">Book page</h1>
+    <div class="content">
+        <div class="property-row">
+            <b>Title:</b>
+            <span>{{book.name}}</span>
+        </div>
+        <div class="property-row">
+            <b>Author:</b>
+            <span>{{book.author}}</span>
+        </div>
+        <div class="property-row">
+            <b>Year:</b>
+            <span>{{book.year}}</span>
+        </div>
+        <div class="property-row">
+            <b>Read:</b>
+            <input type="checkbox" class="checkbox" ng-model="book.read" ng-change="updateRead()">
+        </div>
+        <div class="property-row">
+            <b>Rating:</b>
+            <span>{{book.rating}}</span>
+        </div>
+        <div class="property-row form-group">
+            <b>Review:</b>
+            <br/>
+            <textarea class="textarea" ng-model="book.review"></textarea>
+        </div>
+    </div>
+</div>

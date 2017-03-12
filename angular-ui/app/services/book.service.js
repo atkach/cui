@@ -2,7 +2,7 @@ App.factory('BookService', ['$http', 'CONFIGS',  function ($http, CONFIGS) {
 
   return  {
     getAll: getAll,
-    get: getOne,
+    getOne: getOne,
     create: create,
     update: update,
     remove: remove
@@ -26,14 +26,17 @@ App.factory('BookService', ['$http', 'CONFIGS',  function ($http, CONFIGS) {
 
   function create (data, callback) {
     $http.post(CONFIGS.apiPrefix + 'books', data).then(function(response) {
-      callback({successful: true}, null);
+      callback({
+        bookId: response.data.book_id,
+        successful: true
+      }, null);
     }, function(response) {
       callback({successful: false}, response.data)
     });
   }
 
   function update (data, id, callback) {
-    $http.post(CONFIGS.apiPrefix + 'books/' + id, data).then(function(response) {
+    $http.put(CONFIGS.apiPrefix + 'books/' + id, data).then(function(response) {
       callback({successful: true}, null);
     }, function(response) {
       callback({successful: false}, response.data)

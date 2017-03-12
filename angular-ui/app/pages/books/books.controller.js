@@ -2,7 +2,6 @@
 App.controller("booksController",
   ['$scope', '$routeParams', 'BookService',
     function ($scope, $routeParams, BookService) {
-      $scope.username = $routeParams.username;
       $scope.books = [];
       $scope.requestError = '';
 
@@ -10,4 +9,13 @@ App.controller("booksController",
         $scope.requestError = error;
         $scope.books = data;
       });
+
+      $scope.remove = function (book) {
+        BookService.remove(book._id, function (data, error) {
+          $scope.requestError = error;
+          if (data.successful) {
+            $scope.books.splice($scope.books.indexOf(book), 1);
+          }
+        });
+      }
     }]);
