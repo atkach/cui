@@ -18,7 +18,7 @@ App.controller("addBookController",
         };
         BookService.create(bookInfo, function(data, error) {
           if (data.successful) {
-            $scope.requestMessage = `Book ${$scope.name} successfully created!`;
+            $scope.requestMessage = 'Book' + $scope.name + ' successfully created!';
             $location.path('/books/' + data.bookId);
           } else {
             $scope.requestMessage = error.message;
