@@ -26,14 +26,16 @@ router.post('/login', function(req, res, next) {
 });
 
 router.all('*', function(req, res, next) {
-  var user = basicAuth(req);
-  if (!user || user.name !== USERNAME || user.pass !== PASSWORD) {
-    //res.setHeader('WWW-Authenticate', 'Basic');
-    res.statusCode = 401;
-    res.end('Access denied');
-  } else {
-    next();
-  }
+  next();
+  //TODO enable auth
+  // var user = basicAuth(req);
+  // if (!user || user.name !== USERNAME || user.pass !== PASSWORD) {
+  //   //res.setHeader('WWW-Authenticate', 'Basic');
+  //   res.statusCode = 401;
+  //   res.end('Access denied');
+  // } else {
+  //   next();
+  // }
 });
 
 router.get('/', function(req, res, next) {

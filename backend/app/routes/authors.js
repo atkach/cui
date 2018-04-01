@@ -23,7 +23,9 @@ module.exports = {
           if (err) {
             return res.send(err);
           }
-          res.json(authors);
+          res.json({
+            "authors": authors
+          });
         });
       });
 
@@ -33,7 +35,9 @@ module.exports = {
           if (err) {
             res.send(err);
           }
-          res.json(author);
+          res.json({
+            "author": author
+          });
         });
       })
       .put(function(req, res) {
