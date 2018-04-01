@@ -5,7 +5,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var route = require('./app/routes/route');
 
-var UI = 'angular-ui/dist';
+var UI = 'ember-ui/dist';
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
