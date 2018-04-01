@@ -65,6 +65,10 @@ module.exports = {
 
 function requestBodyToBook(body, book) {
   for(var key in body) {
-    book[key] = body[key];
+    if (key === 'authors') {
+      book[key] = JSON.parse(body[key]);
+    } else {
+      book[key] = body[key];
+    }
   }
 }

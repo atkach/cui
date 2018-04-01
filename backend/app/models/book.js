@@ -4,7 +4,7 @@ var Schema       = mongoose.Schema;
 
 var BookSchema   = new Schema({
   name: String,
-  author: String,
+  authors: [String],
   year: Number,
   rating: Number,
   read: Boolean,

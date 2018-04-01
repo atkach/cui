@@ -2,6 +2,7 @@ var express = require('express');
 var basicAuth = require('basic-auth');
 var router = express.Router();
 var booksRoute = require('./books');
+var authorsRoute = require('./authors');
 
 
 const USERNAME = 'admin';
@@ -42,3 +43,4 @@ router.get('/', function(req, res, next) {
 
 
 booksRoute.init(router);
+authorsRoute.init(router);
