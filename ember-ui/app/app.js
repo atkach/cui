@@ -6,7 +6,8 @@ import config from './config/environment';
 const App = Application.extend({
   modulePrefix: config.modulePrefix,
   podModulePrefix: config.podModulePrefix,
-  Resolver
+  Resolver,
+  loggedIn: false
 });
 
 loadInitializers(App, config.modulePrefix);
