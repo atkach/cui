@@ -24,7 +24,7 @@ module.exports = {
             return res.send(err);
           }
           res.json({
-            "books": books
+            "books": books.map((b) => b.toJSON())
           });
         });
       });
@@ -36,7 +36,7 @@ module.exports = {
             res.send(err);
           }
           res.json({
-            "book": book
+            "book": book.toJSON()
           });
         });
       })
