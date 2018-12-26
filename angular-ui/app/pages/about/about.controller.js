@@ -1,3 +1,0 @@
-App.controller('aboutController', function() {
-
-});
