@@ -7,7 +7,6 @@ const App = Application.extend({
   modulePrefix: config.modulePrefix,
   podModulePrefix: config.podModulePrefix,
   Resolver,
-  loggedIn: false
 });
 
 loadInitializers(App, config.modulePrefix);

@@ -1,3 +1,18 @@
-You need login
-
-Enter username: <input type="text">
+<form name="login-form" {{action "login" on="submit"}}>
+    <div class="login-form-wrapper">
+        <div class="vertical-form-control">
+            <label>Username:</label>
+            {{input value=username type="text" name="username" placeholder="Username"}}
+        </div>
+        <div class="vertical-form-control">
+            <Label>Password:</Label>
+            {{input value=password type="password" name="password" placeholder="password"}}
+        </div>
+        <div>
+            <button class="button" type="submit">Login</button>
+        </div>
+        <div>
+            <a class="link" href="javascript:void(0)">Register</a>
+        </div>
+    </div>
+</form>

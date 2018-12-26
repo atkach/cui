@@ -25,6 +25,10 @@ mongoose.connect('mongodb://localhost:27017/cui');
  */
 app.use('/api/v1', route);
 
+app.all('*', function(req, res) {
+  res.redirect('/');
+});
+
 /**
  * start a localhost server
  */
