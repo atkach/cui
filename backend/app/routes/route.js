@@ -12,6 +12,9 @@ module.exports = router;
 
 router.use(function(req, res, next) {
   console.log(req.method + ' call to ' + req.url);
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,POST,PUT");
+  res.header("Access-Control-Allow-Headers", "access-control-allow-origin,content-type");
   next();
 });
 
@@ -21,12 +24,11 @@ router.post('/login', function(req, res, next) {
     res.end('Incorrect credentials');
   } else {
     res.end('Login successful');
-    next();
+    //TODO setAuthSession
   }
 });
 
 router.all('*', function(req, res, next) {
-  next();
   //TODO enable auth
   var user = basicAuth(req);
   if (!user || user.name !== USERNAME || user.pass !== PASSWORD) {

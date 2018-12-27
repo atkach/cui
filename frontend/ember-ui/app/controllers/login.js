@@ -1,6 +1,5 @@
 import Controller from '@ember/controller';
-import $ from 'jquery';
-import Ember from 'ember';
+import { inject as service } from '@ember/service';
 
 export default Controller.extend({
   username: '',
@@ -8,23 +7,24 @@ export default Controller.extend({
 
   loginFailed: false,
   isProcessing: false,
-  userController: Ember.inject.controller('user'),
+  userController: service('user'),
+  ajax: service('ajax'),
 
   actions: {
     login() {
-      $.ajax({
-        url: '/api/v1/login',
-        type: "POST",
+      this.ajax.request('login', {
+        method: "POST",
         data: {
           username: this.get('username'),
           password: this.get('password')
         }
       }).then(() => {
         this.set('userController.user', {
-          username: this.get('username')
+          username: this.username
         });
 
       }).catch((error) => {
+        console.warn(error);
         this.set('loginFailed', true);
       });
     }
