@@ -13,26 +13,29 @@ module.exports = router;
 router.use(function(req, res, next) {
   console.log(req.method + ' call to ' + req.url);
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,POST,PUT");
-  res.header("Access-Control-Allow-Headers", "access-control-allow-origin,content-type");
+  res.header("Access-Control-Allow-Headers", "Authorization");
   next();
 });
 
 router.post('/login', function(req, res, next) {
-  if (req.body.username !== USERNAME || req.body.password !== PASSWORD) {
-    res.statusCode = 403;
-    res.end('Incorrect credentials');
-  } else {
-    res.end('Login successful');
-    //TODO setAuthSession
+  if (!req.headers.authorization || req.headers.authorization.indexOf('Basic ') === -1) {
+    return res.status(401).json({ message: 'Missing Authorization Header' });
   }
+  
+  const user = basicAuth(req);
+  if (!user && user.name !== USERNAME && user.pass !== PASSWORD) {
+    return res.status(403).json({ message: 'Invalid Authentication Credentials' });
+  }
+  res.json({ message: 'Login successful' });
 });
 
 router.all('*', function(req, res, next) {
-  //TODO enable auth
-  var user = basicAuth(req);
+  const user = basicAuth(req);
+  if (req.method === 'OPTIONS') {
+    return next();
+  }
   if (!user || user.name !== USERNAME || user.pass !== PASSWORD) {
-    res.setHeader('WWW-Authenticate', 'Basic');
+    //res.setHeader('WWW-Authenticate', 'Basic');
     res.statusCode = 401;
     res.end('Access denied');
   } else {

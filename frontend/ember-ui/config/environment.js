@@ -5,7 +5,7 @@ module.exports = function(environment) {
     modulePrefix: 'ember-ui',
     environment,
     rootURL: '/',
-    locationType: 'auto',
+    locationType: 'hash',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -18,7 +18,7 @@ module.exports = function(environment) {
     },
 
     APP: {
-      API_NAMESPACE: '/api/v1'
+      API_NAMESPACE: 'api/v1'
       // Here you can pass flags/options to your application instance
       // when it is created
     }

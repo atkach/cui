@@ -5,11 +5,11 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var route = require('./app/routes/route');
 
-var UI = 'ember-ui/dist';
+var UI = 'frontend/ember-ui/dist';
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "./../" + UI)));
+app.use(express.static(path.join(__dirname, "../" + UI)));
 
 var port = process.env.PORT || 8080;
 
@@ -26,7 +26,7 @@ mongoose.connect('mongodb://localhost:27017/cui');
 app.use('/api/v1', route);
 
 app.all('*', function(req, res) {
-  res.redirect('/');
+  //res.redirect('/');
 });
 
 /**

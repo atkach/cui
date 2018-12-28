@@ -1,8 +1,5 @@
 import DS from 'ember-data';
-import ENV from 'ember-ui/config/environment';
+import AjaxServiceSupport from 'ember-ajax/mixins/ajax-support';
 
 
-export default DS.RESTAdapter.extend({
-  namespace: ENV.APP.API_NAMESPACE,
-  host: ENV.APP.API_HOST
-});
+export default DS.RESTAdapter.extend(AjaxServiceSupport);

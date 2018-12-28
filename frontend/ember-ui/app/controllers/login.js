@@ -7,26 +7,34 @@ export default Controller.extend({
 
   loginFailed: false,
   isProcessing: false,
-  userController: service('user'),
+  userService: service('user'),
   ajax: service('ajax'),
 
   actions: {
     login() {
-      this.ajax.request('login', {
-        method: "POST",
-        data: {
-          username: this.get('username'),
-          password: this.get('password')
+      const token = btoa(this.username + ':' + this.password);
+      this.ajax.post('login', {
+        headers: {
+          'Authorization': 'Basic ' + token
         }
       }).then(() => {
-        this.set('userController.user', {
-          username: this.username
+        this.set('userService.user', {
+          username: this.username,
+          token: token
         });
-
+        this.transitionToRoute('main');
       }).catch((error) => {
         console.warn(error);
         this.set('loginFailed', true);
       });
+      this.resetCredentials();
     }
+  },
+  resetCredentials: function() {
+    this.setProperties({
+      username: '',
+      password: ''
+    });
   }
+  
 });
