@@ -23,7 +23,7 @@ router.post('/login', function(req, res, next) {
   }
   
   const user = basicAuth(req);
-  if (!user && user.name !== USERNAME && user.pass !== PASSWORD) {
+  if (!user || user.name !== USERNAME && user.pass !== PASSWORD) {
     return res.status(403).json({ message: 'Invalid Authentication Credentials' });
   }
   res.json({ message: 'Login successful' });
