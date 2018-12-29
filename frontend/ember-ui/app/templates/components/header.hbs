@@ -1,0 +1,28 @@
+{{yield}}
+<div class="header-row">
+    <h1 class="header-title">
+        <img src='assets/images/logo.png' class="logo">
+        Ember Application
+        {{user.user.username}}
+    </h1>
+    {{#if loggedIn}}
+        <div class="top-menu">
+            {{#link-to "main.index" class="link"}}
+                Home
+            {{/link-to}}
+            {{#link-to "main.books" class="link"}}
+                Books
+            {{/link-to}}
+            {{#link-to "main.authors" class="link"}}
+                Authors
+            {{/link-to}}
+            {{#link-to "main.about" class="link"}}
+                About Us
+            {{/link-to}}
+        </div>
+        <div class="logged-user">
+            <span>admin,</span>
+            <a href="#" {{action "logout"}}>Log Out</a>
+        </div>
+    {{/if}}
+</div>

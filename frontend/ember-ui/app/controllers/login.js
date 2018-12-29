@@ -22,13 +22,11 @@ export default Controller.extend({
           username: this.username,
           token: token
         });
-        // TODO save token to cookie
         this.transitionToRoute('main');
       }).catch((error) => {
         console.warn(error);
         this.set('loginFailed', true);
-      });
-      this.resetCredentials();
+      }).then(() => this.resetCredentials());
     }
   },
   resetCredentials: function() {
