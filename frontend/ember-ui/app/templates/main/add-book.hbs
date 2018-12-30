@@ -1,0 +1,47 @@
+{{outlet}}
+<div class="page-content">
+
+    <h2>Add New Book</h2>
+    <form name="add-book" {{action "addBook" on="submit"}}>
+        <div class="wrapper">
+            <div class="horizontal-form-control">
+                <label>Title:</label>
+                {{input value=title type="text" name="title" placeholder="Title"}}
+            </div>
+            <div class="horizontal-form-control">
+                <label>Author:</label>
+                {{input value=author type="text" name="author" placeholder="Author"}}
+            </div>
+            <div class="horizontal-form-control">
+                <label>Year:</label>
+                {{input value=year type="text" name="year" placeholder="Year"}}
+            </div>
+            <div class="horizontal-form-control">
+                <label>Read:</label>
+                {{input type="checkbox" name="read" checked=isRead}}
+                <span class="{{unless isRead 'hidden'}}">Check me out!</span>
+            </div>
+            <div class="horizontal-form-control">
+                <label>Review:</label>
+                {{textarea value=review name="review" rows=5 cols=40}}
+            </div>
+
+            <div class="horizontal-form-control">
+                <label>Upload Cover</label>
+                {{input
+                        name="upload-cover"
+                        type="file"
+                        multiple="true"
+                        action="uploadCover"
+                        accept="image/png,image/jpeg,application/pdf"}}
+            </div>
+
+            <div>
+                <button class="button" type="submit">Create</button>
+                {{#link-to "main.books" classNames="button"}}Cancel{{/link-to}}
+            </div>
+        </div>
+    </form>
+
+</div>
+

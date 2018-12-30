@@ -10,8 +10,10 @@ Router.map(function() {
   this.route('main', { path: '/' }, function() {
     this.route('about', { path: '/about' });
     this.route('books', function() {
+      this.route('index', { path: '/' });
       this.route('book', { path: '/:book_id' });
     });
+    this.route('add-book');
     this.route('authors');
     this.route('author', { path: '/author/:author_id' });
     this.route('not-found', { path: '/*path' });

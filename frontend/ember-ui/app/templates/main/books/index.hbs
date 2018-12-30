@@ -1,0 +1,25 @@
+
+<h2 class="align-center">
+    Books page
+</h2>
+<div class="row">
+    {{#link-to "main.add-book" classNames="button"}}Add Book{{/link-to}}
+    <div class="inline-block pull-right">
+        <label>Search:</label>
+        {{input classNames="input"}}
+    </div>
+</div>
+<table class="table">
+    <thead>
+
+    </thead>
+    <tbody>
+    {{#each model.books as |book|}}
+        <tr>
+            <td>
+                {{book.name}}
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
