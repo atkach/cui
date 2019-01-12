@@ -17,7 +17,7 @@
     {{#each model.books as |book|}}
         <tr>
             <td>
-                {{book.name}}
+                {{#link-to "main.books.book" book}}{{book.name}}{{/link-to}}
             </td>
         </tr>
     {{/each}}

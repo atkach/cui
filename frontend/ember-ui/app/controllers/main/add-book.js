@@ -13,20 +13,39 @@ export default Controller.extend({
 
   actions: {
     addBook() {
-      this.ajax.post('books', {
+      let authorId;
+      this.ajax.post('authors', {
         data: {
-          name: this.title,
-          author: this.author,
-          year: Number(this.year),
-          read: this.isRead,
-          rating: 0,
-          review: this.review
+          firstName: this.author.split(' ')[0],
+          lastName: this.author.split(' ')[1],
+          birthday: new Date(),
+          biography: '',
+          books: JSON.stringify([this.title])
         }
       }).then((response) => {
+        authorId = response.author_id;
+        this.ajax.post('books', {
+          data: {
+            name: this.title,
+            authors: JSON.stringify([response.author_id]),
+            year: Number(this.year),
+            read: this.isRead,
+            rating: 0,
+            review: this.review
+          }
+        }).then((response) => {
+          this.ajax.put('authors/' + authorId, {
+            data: {
+              books: JSON.stringify([response.book_id])
+            }
+          });
+          alert(response.message);
+          this.transitionToRoute('main.books.book', response.book_id);
+        }).catch((error) => {
+          console.warn(error);
+        });
+      }).catch((reponse) => {
         alert(response.message);
-        this.transitionToRoute('main.books.book', response.book_id);
-      }).catch((error) => {
-        console.warn(error);
       });
     }
   },

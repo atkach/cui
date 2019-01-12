@@ -1,3 +1,17 @@
 {{outlet}}
 
-My book
+<div class="page-content">
+    <h2>{{this.model.name}}</h2>
+    <div>
+        <p>Author:
+            {{#each this.model.authors as |author|}}
+                {{author.firstName}} {{author.lastName}},
+            {{/each}}
+        </p>
+        <p>Year: {{this.model.year}}</p>
+        <p>Read: {{#if this.model.read}}yes{{else}}no{{/if}}</p>
+        <p>Rating: {{this.model.rating}}</p>
+        <p>Review: {{this.model.review}}</p>
+        <p><button {{action "deleteBook" this.model}}>Delete Book</button></p>
+    </div>
+</div>

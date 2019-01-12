@@ -13,6 +13,7 @@ module.exports = router;
 router.use(function(req, res, next) {
   console.log(req.method + ' call to ' + req.url);
   res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "POST,GET,HEAD,PUT,DELETE");
   res.header("Access-Control-Allow-Headers", "Authorization");
   next();
 });
