@@ -1,1 +1,36 @@
 {{outlet}}
+
+<div class="row">
+    <table class="table bordered">
+        <thead>
+        <tr>
+            <th>
+                Full Name
+            </th>
+            <th>
+                Books
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each model.authors as |author|}}
+            <tr>
+                <td>
+                    {{#link-to "main.author" author}}{{author.firstName}} {{author.lastName}}{{/link-to}}
+                </td>
+                <td>
+                    {{#each author.books as |book|}}
+                        {{#link-to "main.books.book" book}}{{book.name}}{{/link-to}}
+                    {{/each}}
+                </td>
+                <td class="align-center">
+                    <button {{action "deleteAuthor" author}}>Delete</button>
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</div>

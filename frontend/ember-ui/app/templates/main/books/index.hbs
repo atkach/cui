@@ -9,17 +9,55 @@
         {{input classNames="input"}}
     </div>
 </div>
-<table class="table">
-    <thead>
-
-    </thead>
-    <tbody>
-    {{#each model.books as |book|}}
+<div class="row">
+    <table class="table bordered">
+        <thead>
         <tr>
-            <td>
-                {{#link-to "main.books.book" book}}{{book.name}}{{/link-to}}
-            </td>
+            <th>
+                Title
+            </th>
+            <th>
+                Author
+            </th>
+            <th>
+                Year
+            </th>
+            <th>
+                Rating
+            </th>
+            <th>
+                Read
+            </th>
+            <th>
+                Action
+            </th>
         </tr>
-    {{/each}}
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        {{#each model.books as |book|}}
+            <tr>
+                <td>
+                    {{#link-to "main.books.book" book}}{{book.name}}{{/link-to}}
+                </td>
+                <td>
+                    {{#each book.authors as |author|}}
+                        {{#link-to "main.author" author}}{{author.firstName}} {{author.lastName}}{{/link-to}}
+                    {{/each}}
+                </td>
+                <td class="align-center">
+                    {{book.year}}
+                </td>
+                <td class="align-center">
+                    {{book.rating}}
+                </td>
+                <td class="align-center">
+                    {{input type="checkbox" name="read" checked=book.read}}
+                </td>
+                <td class="align-center">
+                    <button {{action "deleteBook" book}}>Delete</button>
+                </td>
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+</div>

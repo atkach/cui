@@ -5,7 +5,9 @@
     <div>
         <p>Author:
             {{#each this.model.authors as |author|}}
-                {{author.firstName}} {{author.lastName}},
+                {{#link-to "main.author" author}}
+                    {{author.firstName}} {{author.lastName}}
+                {{/link-to}},
             {{/each}}
         </p>
         <p>Year: {{this.model.year}}</p>

@@ -35,9 +35,13 @@ module.exports = {
           if (err) {
             res.send(err);
           }
-          res.json({
-            "author": author.toJSON()
-          });
+          if (author) {
+            res.json({
+              "author": author.toJSON()
+            });
+          } else {
+            res.send("null");
+          }
         });
       })
       .put(function(req, res) {

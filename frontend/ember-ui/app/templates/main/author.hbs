@@ -1,0 +1,17 @@
+{{outlet}}
+
+<div class="page-content">
+    <h2>Author page</h2>
+    <h3>{{this.model.firstName}} {{this.model.lastName}}</h3>
+    <div>
+        <p>Books:
+            {{#each this.model.books as |book|}}
+                {{#link-to "main.books.book" book}}
+                    {{book.name}}
+                {{/link-to}},
+            {{/each}}
+        </p>
+        <p>Birthday: {{this.model.birthday}}</p>
+        <p>Biography: {{this.model.biography}}</p>
+    </div>
+</div>
