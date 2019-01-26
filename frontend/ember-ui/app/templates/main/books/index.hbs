@@ -34,7 +34,7 @@
         </tr>
         </thead>
         <tbody>
-        {{#each model.books as |book|}}
+        {{#each this.content as |book|}}
             <tr>
                 <td>
                     {{#link-to "main.books.book" book}}{{book.name}}{{/link-to}}
