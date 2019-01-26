@@ -13,7 +13,6 @@ export default Controller.extend({
 
   actions: {
     addBook() {
-      let authorId;
       this.getAuthor(this.author).then((author) => {
         this.ajax.post('books', {
           data: {
@@ -47,7 +46,7 @@ export default Controller.extend({
       return authorRecord.firstName === firstName && authorRecord.lastName === lastName;
     });
     if (existedAuthor) {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve) => {
         resolve(existedAuthor);
       });
     } else {

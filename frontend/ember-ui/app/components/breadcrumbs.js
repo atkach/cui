@@ -6,8 +6,11 @@ import { alias } from '@ember/object/computed';
 
 export default Component.extend({
   router: service('router'),
-
+  user: service('user'),
   current: alias('router.currentRouteName'),
+  loggedIn: computed('user.loggedIn', function() {
+    return this.get('user.loggedIn');
+  }),
 
   breadcrumbs: computed('router.currentRoute', function() {
     const breadcrumbs = [];

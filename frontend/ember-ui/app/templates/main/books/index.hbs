@@ -5,8 +5,8 @@
 <div class="row">
     {{#link-to "main.add-book" classNames="button"}}Add Book{{/link-to}}
     <div class="inline-block pull-right">
-        <label>Search:</label>
-        {{input classNames="input"}}
+        {{input classNames="input" value=currentFilterInput}}
+        <button class="button" {{action "filterTable"}}>Search</button>
     </div>
 </div>
 <div class="row">
@@ -14,16 +14,34 @@
         <thead>
         <tr>
             <th>
-                Title
+                <span class="sort" {{action "sortBy" "title"}}>
+                     Title
+                    <span class="sort-icons">
+                        {{fa-icon "sort-up" class=sortState.title.up}}
+                        {{fa-icon "sort-down" class=sortState.title.down}}
+                    </span>
+                </span>
             </th>
             <th>
                 Author
             </th>
             <th>
-                Year
+                <span class="sort" {{action "sortBy" "year"}}>
+                     Year
+                    <span class="sort-icons">
+                        {{fa-icon "sort-up" class=sortState.year.up}}
+                        {{fa-icon "sort-down" class=sortState.year.down}}
+                    </span>
+                </span>
             </th>
             <th>
-                Rating
+                <span class="sort" {{action "sortBy" "rating"}}>
+                     Rating
+                    <span class="sort-icons">
+                        {{fa-icon "sort-up" class=sortState.rating.up}}
+                        {{fa-icon "sort-down" class=sortState.rating.down}}
+                    </span>
+                </span>
             </th>
             <th>
                 Read

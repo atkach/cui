@@ -1,13 +1,15 @@
-{{yield}}
-<ul class="breadcrumbs">
-    You are here:
-    {{#each breadcrumbs as |crumb|}}
-        <li class={{if crumb.isCurrent 'current'}}>
-            {{#if crumb.linkable}}
-                {{#link-to crumb.path}} {{crumb.label}} {{/link-to}} >>
-            {{else}}
-                {{crumb.label}}
-            {{/if}}
-        </li>
-    {{/each}}
-</ul>
+{{#if loggedIn}}
+    {{yield}}
+    <ul class="breadcrumbs">
+        You are here:
+        {{#each breadcrumbs as |crumb|}}
+            <li class={{if crumb.isCurrent 'current'}}>
+                {{#if crumb.linkable}}
+                    {{#link-to crumb.path}} {{crumb.label}} {{/link-to}} >>
+                {{else}}
+                    {{crumb.label}}
+                {{/if}}
+            </li>
+        {{/each}}
+    </ul>
+{{/if}}

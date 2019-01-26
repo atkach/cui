@@ -21,6 +21,11 @@ module.exports = function(environment) {
       API_NAMESPACE: 'api/v1'
       // Here you can pass flags/options to your application instance
       // when it is created
+    },
+    fontawesome: {
+      icons: {
+        'free-solid-svg-icons': 'all'
+      }
     }
   };
 
