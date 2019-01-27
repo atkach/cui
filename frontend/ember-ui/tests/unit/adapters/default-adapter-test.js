@@ -6,7 +6,7 @@ module('Unit | Adapter | default adapter', function(hooks) {
 
   // Replace this with your real tests.
   test('it exists', function(assert) {
-    let adapter = this.owner.lookup('adapter:default-adapter');
+    let adapter = this.owner.lookup('adapter:application');
     assert.ok(adapter);
   });
 });

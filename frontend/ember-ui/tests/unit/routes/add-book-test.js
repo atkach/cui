@@ -5,7 +5,7 @@ module('Unit | Route | add-book', function(hooks) {
   setupTest(hooks);
 
   test('it exists', function(assert) {
-    let route = this.owner.lookup('route:add-book');
+    let route = this.owner.lookup('route:main/add-book');
     assert.ok(route);
   });
 });
